@@ -34,4 +34,5 @@ Route::get('/about', [App\Http\Controllers\AboutUsController::class, 'index'])->
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 //Profile
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
+

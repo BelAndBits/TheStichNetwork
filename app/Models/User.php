@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Library;
 
 class User extends Authenticatable
 {
@@ -64,16 +65,10 @@ class User extends Authenticatable
         return $this->roles()->where('name', $role)->exists();
     }
 
-    //One to many with Project
-    public function projects()
+    //One one with Library
+    public function library()
     {
-        return $this->hasMany(Project::class);
-    }
-
-    //One to many with patterns
-    public function patterns()
-    {
-        return $this->hasMany(Pattern::class);
+        return $this->hasOne(Library::class, 'user_id');
     }
 
 

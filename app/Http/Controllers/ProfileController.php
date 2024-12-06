@@ -13,14 +13,17 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        // $user = Auth::user();
-        // $projectsCount = $user->projects()->count();
-        // $patternsCount = $user->patterns()->count(); // Asegúrate de que estas relaciones estén definidas en el modelo User
+        $user = Auth::user(); 
+        $library = $user->library()->with('projects')->first(); 
 
-        // return view('profile', [
-        //     'projectsCount' => $projectsCount,
-        //     'patternsCount' => $patternsCount
-        // ]);
+        //Count total number of proyects
+        $projectsCount = $library ? $library->projects->count() : 0;
+    
+        return view('profile', [
+            'user' => $user,
+            'projectsCount' => $projectsCount,
+            'projects' => $library ? $library->projects : collect()
+        ]);
     }
 
     /**

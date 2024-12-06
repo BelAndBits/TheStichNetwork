@@ -12,12 +12,13 @@ class CreateUsersTAble extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id('user_id');//Primary Key
+            $table->id('user_id'); // Primary Key
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamp('registration_date')->useCurrent(); // Set current timestamp by default
             $table->string('name')->nullable();
+            $table->string('avatar_image')->default('public/images/default-avatar.png'); // Default avatar image path
             $table->timestamp('email_verified_at')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();

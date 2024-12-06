@@ -23,7 +23,7 @@
             <!-- User Section -->
             <div class="flex items-center space-x-6">
                 <a href="/my-library" class="px-3 py-2 rounded hover:bg-[#A8C3A5] transition font-bold">
-                    My Library1
+                    My Library
                 </a>
                 @auth
                     <!-- Avatar for Logged-In Users -->

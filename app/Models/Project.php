@@ -13,10 +13,10 @@ class Project extends Model
 
     protected $fillable = ['name', 'description', 'user_id']; 
 
-    //Many to one with User
-    public function user()
+    //Many to one with Library
+    public function library()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Library::class);
     }
 }
 
