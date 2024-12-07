@@ -14,9 +14,10 @@
         <h1 class="text-3xl font-bold text-center mt-5">My Projects</h1>
         <hr class="border-b-2 border-gray-300 my-4">
         <div class="flex flex-col md:flex-row justify-between items-center mb-4">
-            <button class="flex items-center bg-salmon hover:bg-dark-maroon text-white font-bold py-2 px-4 rounded">
+            
+            <a href="{{ route('projects.create', ['username' => Auth::user()->username]) }}" class="flex items-center bg-salmon hover:bg-dark-maroon text-white font-bold py-2 px-4 rounded inline-block">
                 <i class="fas fa-plus mr-2"></i> Add a Project
-            </button>
+            </a>
 
             <div class="relative w-full md:w-1/3 mt-4 md:mt-0">
                 <span class="absolute inset-y-0 left-0 flex items-center pl-2">

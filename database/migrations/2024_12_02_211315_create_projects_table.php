@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id('project_id');
             $table->foreignId('library_id')->constrained('libraries', 'library_id');
             $table->dateTime('creation_date');
+            $table->string('name'); 
+            $table->string('craft');
+            $table->string('pattern'); 
             $table->timestamps();
         });
         

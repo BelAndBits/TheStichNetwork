@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Events\NewUserRegistered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -38,8 +39,12 @@ class RegisterController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
-            // Login the user
+            // Authenticate the user
             Auth::login($user);
+
+            // Fire the event to create the library
+            event(new NewUserRegistered($user));
+
             
             // Redirect to the user's library page
             return redirect('/my-library');

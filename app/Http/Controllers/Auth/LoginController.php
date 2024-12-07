@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,14 +20,21 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($request->only('email', 'password'))) {
-            // If is correct we redirect to home
-            return redirect()->intended('/');
+        //Email veryfication
+        $user = User::where('email', $request->email)->first();
+
+        //If doesn´t exist an user with that email, return email error
+        if (!$user) {
+            return back()->withErrors(['email' => 'The email is not registered.'])->withInput($request->only('email'));
         }
 
-        return back()->withErrors([
-            'email' => 'User not found',
-        ]);
+        //If the user exist but the password is wrong
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return back()->withErrors(['password' => 'The password is incorrect.'])->withInput($request->only('email'));
+        }
+
+        //If everything is ok, redirect
+        return redirect()->intended('/');
     }
 
     protected function authenticated(Request $request, $user)

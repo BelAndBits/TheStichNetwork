@@ -11,7 +11,7 @@ class Project extends Model
 
     protected $primaryKey = 'project_id';
 
-    protected $fillable = ['name', 'description', 'user_id']; 
+    protected $fillable = ['library_id','creation_date', 'name', 'craft', 'pattern']; 
 
     //Many to one with Library
     public function library()

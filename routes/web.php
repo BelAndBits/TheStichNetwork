@@ -10,8 +10,8 @@ use App\Http\Controllers\Auth\RegisterController;
 //Library
 use App\Http\Controllers\LibraryController;
 
-//About us
-use App\Http\Controllers\AboutUsController;
+//Projects
+use App\Http\Controllers\ProjectController;
 
 
 Route::get('/', function () {
@@ -35,4 +35,12 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 //Profile
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
+
+//Add project 
+Route::middleware('auth')->group(function () {
+    Route::get('/my-library/projects/prepare', [ProjectController::class, 'create'])->name('projects.create');
+});
+
+//Save a project
+Route::post('/my-library/projects/store', [ProjectController::class, 'store'])->name('projects.store');
 
