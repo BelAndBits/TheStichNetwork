@@ -9,6 +9,8 @@ class Library extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'library_id';
+
     protected $fillable = [
         'user_id', 
     ];
@@ -20,7 +22,7 @@ class Library extends Model
 
     public function projects()
     {
-        return $this->hasMany(Project::class);
+        return $this->hasMany(Project::class, 'library_id', 'library_id');
     }
 }
  

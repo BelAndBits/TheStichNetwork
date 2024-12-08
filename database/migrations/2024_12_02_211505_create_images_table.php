@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id('image_id');
             $table->foreignId('resource_id')->constrained('resources', 'resource_id');
+            $table->string('path'); 
             $table->boolean('main_image');
             $table->integer('order');
             $table->timestamps();

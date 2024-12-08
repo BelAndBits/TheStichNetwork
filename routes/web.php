@@ -27,6 +27,7 @@ Route::post('/register', [RegisterController::class, 'register']);
 //Library with middleware
 Route::get('/my-library', [LibraryController::class, 'index'])->name('my-library')->middleware('auth');
 
+
 //About-us
 Route::get('/about', [App\Http\Controllers\AboutUsController::class, 'index'])->name('about');
 

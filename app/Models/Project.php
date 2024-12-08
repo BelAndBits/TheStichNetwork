@@ -16,7 +16,13 @@ class Project extends Model
     //Many to one with Library
     public function library()
     {
-        return $this->belongsTo(Library::class);
+        return $this->belongsTo(Library::class, 'library_id', 'library_id');
     }
+
+    public function resources()
+    {
+        return $this->hasMany(Resource::class, 'project_id', 'project_id');
+    }
+
 }
 

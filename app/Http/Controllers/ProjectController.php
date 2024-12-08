@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Library;
+use App\Models\Resource;
+use App\Models\Image;
 use Carbon\Carbon;
 
 class ProjectController extends Controller
@@ -26,10 +28,16 @@ class ProjectController extends Controller
     public function index()
     {
         
-        $projects = $this->all(); // We call the previously created method to fetch our projects from the database.
+        $user_id = Auth::id(); 
+        $projects = Project::with('images') 
+        ->where('library_id', function($query) use ($user_id) {
+            $query->select('library_id')
+                  ->from('libraries')
+                  ->where('user_id', $user_id)
+                  ->first();
+        })->get();
 
-        return view('projects') 
-            ->with('projects', $projects); // The first parameter stands for the variable name in the blade view. The second one is the variable itself.
+    return view('projects.index')->with('projects', $projects);
     }
 
     public function create()
@@ -51,9 +59,8 @@ class ProjectController extends Controller
             'pattern' => 'required'
         ]);
         
-
         // Create project
-        Project::create([
+        $project = Project::create([
             'library_id' => $library['library_id'],
             'creation_date' => Carbon::now(),
             'name' => $request->project_name,
@@ -62,8 +69,44 @@ class ProjectController extends Controller
             
         ]);
 
+        // Ensure $project was created
+        if (!$project) {
+            return back()->withErrors(['error' => 'Failed to create project.']);
+        }
+
+        $resource = Resource::create([
+            'project_id' => $project->project_id,
+            'is_public' => true
+        ]);
+
+        // Ensure $resource was created
+        if (!$resource) {
+            return back()->withErrors(['error' => 'Failed to create resource.']);
+        }
+
+        $iconPath = $this->determineIconPath($request->craft);
+        Image::create([
+            'resource_id' => $resource->id,
+            'path' => $iconPath,
+            'main_image' => true,
+            'order' => 1
+        ]);
+        
         // Redirect o show happy message
-        return redirect('/some-route')->with('status', 'Project created successfully!');
+        return redirect()->route('my-library')->with('success', 'Project created successfully!');
+    }
+
+        protected function determineIconPath($craft)
+    {
+        $icons = [
+            'crochet' => 'images/crochet-icon.png',
+            'cross-stitch' => 'images/cross-stitch-icon.png',
+            'embroidery' => 'images/embroidery-icon.png',
+            'knitting' => 'images/knitting-icon.png',
+            'sewing' => 'images/sewing-icon.png',
+        ];
+
+        return $icons[strtolower($craft)] ?? 'images/default-icon.png'; // default icon if craft not matched
     }
 
 }

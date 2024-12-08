@@ -21,7 +21,7 @@
                 <div class="mt-4">
                     <p>Projects: {{ $projectsCount ?? 0 }}</p>
                     @if($projectsCount == 0)
-                        <p>You have no projects yet! <a href="/projects/create" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Upload your first project</a></p>
+                        <p>You have no projects yet! <a href="/projects/create" class="text-blue-500 hover:text-blue-700">Start your first project.</a></p>
                     @endif
                 </div>
             </div>
