@@ -16,7 +16,7 @@
             <div class="hidden md:flex space-x-6">
                 <a href="/patterns" class="px-3 py-2 rounded hover:bg-[#A8C3A5] hover:text-white transition font-bold">Patterns</a>
                 <a href="/materials" class="px-3 py-2 rounded hover:bg-[#A8C3A5] hover:text-white transition font-bold">Materials</a>
-                <a href="/library" class="px-3 py-2 rounded hover:bg-[#A8C3A5] hover:text-white transition font-bold">Projects</a>
+                <a href="/all-projects" class="px-3 py-2 rounded hover:bg-[#A8C3A5] hover:text-white transition font-bold">Projects</a>
                 <a href="/about" class="px-3 py-2 rounded hover:bg-[#A8C3A5] hover:text-white transition font-bold">About Us</a>
             </div>
 

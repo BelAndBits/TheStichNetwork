@@ -109,4 +109,20 @@ class ProjectController extends Controller
         return $icons[strtolower($craft)] ?? 'images/default-icon.png'; // default icon if craft not matched
     }
 
+    public function allProjects()
+    {
+        $projects = Project::all(); 
+        return view('projects', compact('projects'));
+    }
+
+    public function showAllProjects()
+    {
+        $projects = Project::with(['resources.images' => function($query) {
+            $query->where('main_image', true); 
+        }])->get();
+  
+        return view('projects', compact('projects'));
+    }
+
+
 }

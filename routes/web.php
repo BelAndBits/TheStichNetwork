@@ -41,7 +41,12 @@ Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 Route::middleware('auth')->group(function () {
     Route::get('/my-library/projects/prepare', [ProjectController::class, 'create'])->name('projects.create');
 });
+//All projects 
+Route::get('/all-projects', [ProjectController::class, 'showAllProjects'])->name('projects.all');
+
+
 
 //Save a project
 Route::post('/my-library/projects/store', [ProjectController::class, 'store'])->name('projects.store');
+
 
