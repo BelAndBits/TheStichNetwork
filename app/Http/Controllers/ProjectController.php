@@ -120,6 +120,8 @@ class ProjectController extends Controller
         $projects = Project::with(['resources.images' => function($query) {
             $query->where('main_image', true); 
         }])->get();
+
+        dd($projects);
   
         return view('projects', compact('projects'));
     }

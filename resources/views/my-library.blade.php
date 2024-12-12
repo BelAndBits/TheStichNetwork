@@ -45,19 +45,19 @@
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
-            @foreach ($projects as $project)
-                @foreach ($project->resources as $resource)
-                    @if ($resource->mainImage)
-                        <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                            <div class="px-6 py-4 bg-white">
-                                <h3 class="font-bold text-xl mb-2">{{ $project->name }}</h3>
-                            </div>
-                            <img class="w-full" src="{{ Storage::url($resource->Image->path) }}" alt="Main Project Image">
+        @foreach ($projects as $project)
+            @foreach ($project->resources as $resource)
+                @if ($resource->mainImage && $resource->mainImage->path)
+                    <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                        <div class="px-6 py-4 bg-white">
+                            <h3 class="font-bold text-xl mb-2">{{ $project->name }}</h3>
                         </div>
-                    @endif
-                @endforeach
+                        <img class="w-full" src="{{ Storage::url($resource->mainImage->path) }}" alt="Main Project Image">
+                    </div>
+                @endif
             @endforeach
-        </div>
+        @endforeach
+    </div>
 
     </div>
 

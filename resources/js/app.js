@@ -1,6 +1,7 @@
 import './bootstrap';
 import './nav';
 import './library';
+import './form-handler';
 
 import Alpine from 'alpinejs';
 

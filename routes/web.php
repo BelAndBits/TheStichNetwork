@@ -13,6 +13,9 @@ use App\Http\Controllers\LibraryController;
 //Projects
 use App\Http\Controllers\ProjectController;
 
+//Patterns
+use App\Http\Controllers\PatternController;
+
 
 Route::get('/', function () {
     return view('home');
@@ -44,9 +47,17 @@ Route::middleware('auth')->group(function () {
 //All projects 
 Route::get('/all-projects', [ProjectController::class, 'showAllProjects'])->name('projects.all');
 
-
-
 //Save a project
 Route::post('/my-library/projects/store', [ProjectController::class, 'store'])->name('projects.store');
 
+//Paterns
+Route::get('/patterns/create', [PatternController::class, 'create'])
+    ->middleware('auth')
+    ->name('patterns.create');
 
+Route::post('/patterns', [PatternController::class, 'store'])
+    ->middleware('auth')
+    ->name('patterns.store');
+
+Route::get('/patterns', [PatternController::class, 'index'])
+    ->name('patterns.index');

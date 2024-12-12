@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('resources', function (Blueprint $table) {
             $table->id('resource_id');
-            $table->foreignId('project_id')->constrained('projects','project_id');
+            $table->foreignId('pattern_id')->nullable()->constrained('patterns', 'pattern_id')->onDelete('cascade');
+            $table->foreignId('project_id')->nullable()->constrained('projects', 'project_id')->onDelete('cascade');
             $table->boolean('is_public');
             $table->timestamps();
         });
