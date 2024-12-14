@@ -26,20 +26,24 @@
                 </select>
             </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @foreach ($patterns as $pattern)
-                <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                    @foreach ($pattern->resources as $resource)
-                        @foreach ($resource->images as $image)
-                            <img class="w-full" src="{{ asset('storage/' . $image->path) }}" alt="Pattern Image">
-                            @break 2
-                        @endforeach
+                @foreach ($pattern->resources as $resource)
+                    @foreach ($resource->images as $image)
+                        @if ($image->main_image)
+                        <a href="{{ route('patterns.show', ['pattern' => $pattern->pattern_id]) }}" class="block">
+                                <div class="max-w-sm rounded overflow-hidden shadow-lg mx-auto" style="width: 100%; max-width: 300px;">
+                                    <div style="height: 300px; overflow: hidden;">
+                                        <img class="w-full h-full object-cover object-center" src="{{ Storage::url($image->path) }}" alt="Pattern Image">
+                                    </div>
+                                    <div class="px-6 py-4">
+                                        <div class="font-bold text-xl mb-2 text-center">{{ $pattern->name }}</div>
+                                    </div>
+                                </div>
+                            </a>
+                        @endif
                     @endforeach
-                    <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">{{ $pattern->name }}</div>
-                        <p>{{ $pattern->description }}</p>
-                    </div>
-                </div>
+                @endforeach
             @endforeach
         </div>
     </div>

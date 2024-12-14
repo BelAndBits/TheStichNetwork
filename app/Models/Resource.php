@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Resource extends Model
 {
+    protected $primaryKey = 'resource_id';
+    
     protected $fillable = ['project_id', 'pattern_id', 'is_public'];
     
     public function project()

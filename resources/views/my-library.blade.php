@@ -52,7 +52,7 @@
                         <div class="px-6 py-4 bg-white">
                             <h3 class="font-bold text-xl mb-2">{{ $project->name }}</h3>
                         </div>
-                        <img class="w-full" src="{{ Storage::url($resource->mainImage->path) }}" alt="Main Project Image">
+                        <img class="w-full" src="{{url($resource->mainImage->path) }}" alt="Main Project Image">
                     </div>
                 @endif
             @endforeach

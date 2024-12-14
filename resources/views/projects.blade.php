@@ -9,7 +9,7 @@
                 @foreach ($resource->images as $image)
                     @if ($image->main_image)
                         <div class="max-w-sm rounded overflow-hidden shadow-lg mx-auto">
-                            <img class="w-full h-48 object-cover" src="{{ Storage::url($image->path) }}" alt="Project Image">
+                            <img class="w-full h-48 object-cover" src="{{url($image->path) }}" alt="Project Image">
                             <div class="px-6 py-4">
                                 <div class="font-bold text-xl mb-2 text-center">{{ $project->name }}</div>
                             </div>

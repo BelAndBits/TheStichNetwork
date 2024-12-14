@@ -86,7 +86,7 @@ class ProjectController extends Controller
 
         $iconPath = $this->determineIconPath($request->craft);
         Image::create([
-            'resource_id' => $resource->id,
+            'resource_id' => $resource->resource_id,
             'path' => $iconPath,
             'main_image' => true,
             'order' => 1
@@ -121,8 +121,7 @@ class ProjectController extends Controller
             $query->where('main_image', true); 
         }])->get();
 
-        dd($projects);
-  
+ 
         return view('projects', compact('projects'));
     }
 

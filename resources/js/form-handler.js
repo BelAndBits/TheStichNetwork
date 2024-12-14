@@ -17,7 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 radioInput.id = `main_image_${i}`;  // Assign an unique ID based on the file index.
                 radioInput.name = 'main_image';  // All radio buttons share the same name to group them.
                 radioInput.value = i;  // The value of each radio button corresponds to its index.
-                radioInput.className = 'mr-2';  // Add margin class for spacing.
+                radioInput.value = input.files[i].name;   // Add margin class for spacing.
+                radioInput.className = 'mr-2';
                 if (i === 0) {
                     radioInput.checked = true;  // Automatically check the first radio button.
                 }
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const label = document.createElement('label');  // Create a label for the radio button.
                 label.htmlFor = `main_image_${i}`;  // Ensure the label corresponds to the radio button ID.
                 label.className = 'text-sm text-gray-700';  // Add classes for styling.
-                label.textContent = `Image ${i + 1}`;  // Set label text to show which image it represents.
+                label.textContent = input.files[i].name;  // Set label text to show which image it represents.
 
                 radioWrapper.appendChild(radioInput);  // Add the radio button to the wrapper.
                 radioWrapper.appendChild(label);  // Add the label to the wrapper.

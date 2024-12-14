@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Type_Resource extends Model
+class TypeResource extends Model
 {
     protected $primaryKey = 'type_id';
     protected $fillable = ['resource_id', 'is_image', 'is_pdf'];    

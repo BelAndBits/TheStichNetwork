@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pdf_files', function (Blueprint $table) {
             $table->id('file_id');
             $table->foreignId('resource_id')->constrained('resources', 'resource_id');
-            $table->string('language');
+            $table->string('path'); 
             $table->timestamps();
         });
         

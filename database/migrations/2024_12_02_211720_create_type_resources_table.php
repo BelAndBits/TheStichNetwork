@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('type_resources', function (Blueprint $table) {
             $table->id('type_id');
-            $table->foreignId('resource_id')->constrained('patterns', 'pattern_id')->onDelete('cascade');
+            $table->foreignId('resource_id')->constrained('resources', 'resource_id')->onDelete('cascade');
             $table->boolean('is_image');
             $table->boolean('is_pdf');
             $table->timestamps();

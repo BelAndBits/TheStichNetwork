@@ -9,7 +9,6 @@ class Library extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'library_id';
 
     protected $fillable = [
         'user_id', 

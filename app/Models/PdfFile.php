@@ -9,7 +9,7 @@ class PdfFile extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['resource_id', 'language'];
+    protected $fillable = ['resource_id', 'path'];
 
     public function resource()
     {

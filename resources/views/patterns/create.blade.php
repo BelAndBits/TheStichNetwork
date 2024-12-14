@@ -35,10 +35,10 @@
             <div>
                 <label for="images" class="block text-sm font-medium text-maroon">Images:</label>
                 <input type="file" id="images" name="images[]" accept="image/*" multiple required class="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-salmon hover:file:bg-salmon-700" onchange="updateMainImageOptions(this)">
-                <small>Select one image as main.</small>
+                <p class="text-sm font-medium text-maroon mb-4">Select one image as main.</p>
             </div>
             <div id="main-image-selection" class="mt-4 hidden">
-                <p class="text-sm font-medium text-maroon">Select the main image:</p>
+            <p class="text-sm font-medium text-maroon mb-4">Select the main image:</p>
                 <!-- Radio buttons will be appended here by JavaScript -->
             </div>
 

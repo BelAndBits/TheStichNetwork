@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('patterns', function (Blueprint $table) {
             $table->id('pattern_id');
-            $table->foreignId('library_id')->constrained('libraries','library_id');
+            $table->foreignId('user_id')->constrained('users','user_id');
             $table->dateTime('add_date');
             $table->text('materials');
             $table->string('name');
